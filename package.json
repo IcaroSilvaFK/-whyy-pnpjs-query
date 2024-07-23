@@ -1,10 +1,11 @@
 {
-  "name": "@whyy/pnpjs-query",
+  "name": "@icarowhyy/pnpjs-query",
   "version": "0.0.1",
-  "description": "pnpjs query for JavaScript",
+  "description": "OData query for JavaScript",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "private": false,
   "scripts": {
     "build": "pnpm tsup src/index.ts --format cjs,esm --dts",
     "dev": "tsx watch src/index.ts",
@@ -22,11 +23,7 @@
     "pnpjs-query",
     "JavaScript"
   ],
-  "author": {
-    "name": "Whyy",
-    "email": "icarovsilva1@gmail.com",
-    "url": "https://github.com/IcaroSilvaFK"
-  },
+  "author": "Whyy <icarovsilva1@gmail.com> (https://github.com/IcaroSilvaFK)",
   "license": "MIT",
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
@@ -36,5 +33,16 @@
     "tsx": "^4.16.2",
     "typescript": "^5.5.4",
     "vitest": "^2.0.4"
-  }
+  },
+  "dependencies": {
+    "prettier": "^2.8.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/IcaroSilvaFK/-whyy-pnpjs-query.git"
+  },
+  "bugs": {
+    "url": "https://github.com/IcaroSilvaFK/-whyy-pnpjs-query/issues"
+  },
+  "homepage": "https://github.com/IcaroSilvaFK/-whyy-pnpjs-query#readme"
 }

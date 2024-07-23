@@ -9,7 +9,7 @@ OData (Open Data Protocol) is a standardized protocol developed by Microsoft for
 </p>
 
 <p>
-  Escreva consultas OData de maneira semântica e fácil de entender, sem erros de digitação.
+Write OData queries in a semantic and easy-to-understand way, without typos.
 </p>
 
 ## Features
@@ -79,7 +79,7 @@ const query = new Query().ge("age", 10).build();
 ### Install
 
 ```shell
-npm i @whyy/pnpjs-query
+npm i @icarowhyy/pnpjs-query
 ```
 
 ### Contributing
