@@ -1,6 +1,6 @@
 {
   "name": "@whyy/pnpjs-query",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "pnpjs query for JavaScript",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
