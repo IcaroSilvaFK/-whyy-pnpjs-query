@@ -6,7 +6,7 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build": "pnpm tsup src/index.ts --format cjs,esm --dts",
     "dev": "tsx watch src/index.ts",
     "test": "vitest",
     "coverage": "vitest run --coverage",
@@ -32,6 +32,7 @@
     "@biomejs/biome": "1.8.3",
     "@changesets/cli": "^2.27.7",
     "@vitest/coverage-v8": "^2.0.4",
+    "tsup": "^8.2.2",
     "tsx": "^4.16.2",
     "typescript": "^5.5.4",
     "vitest": "^2.0.4"
