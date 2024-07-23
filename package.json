@@ -1,6 +1,6 @@
 {
   "name": "@icarowhyy/pnpjs-query",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "OData query for JavaScript",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -33,9 +33,6 @@
     "tsx": "^4.16.2",
     "typescript": "^5.5.4",
     "vitest": "^2.0.4"
-  },
-  "dependencies": {
-    "prettier": "^2.8.8"
   },
   "repository": {
     "type": "git",
