@@ -1,120 +1,95 @@
 export class Query {
-  private query: string[] = [];
+	private query: string[] = [];
 
-  contains(field: string, text: string): Query {
-    if (!this.trimSpaces(text)) return this;
+	contains(field: string, text: string): Query {
+		if (!this.trimSpaces(text)) return this;
 
-    this.query.push(`contains(${field}, '${text}')`);
+		this.query.push(`contains(${field}, '${text}')`);
 
-    return this;
-  }
+		return this;
+	}
 
-  startsWith(field: string, text: string): Query {
-    if (!this.trimSpaces(text)) return this;
-    this.query.push(`startsWith(${field}, '${text}')`);
+	startsWith(field: string, text: string): Query {
+		if (!this.trimSpaces(text)) return this;
+		this.query.push(`startsWith(${field}, '${text}')`);
 
-    return this
-  }
+		return this;
+	}
 
-  eq(field: string, value: string | number): Query {
+	eq(field: string, value: string | number): Query {
+		if (typeof value !== "number" && !this.trimSpaces(value)) return this;
 
-    if (
-      typeof value !== "number" &&
-      !this.trimSpaces(value)
-    ) return this
+		if (typeof value === "number") {
+			this.query.push(`${field} eq ${value}`);
+			return this;
+		}
 
-    if (typeof value === "number") {
+		this.query.push(`${field} eq '${value}'`);
 
-      this.query.push(`${field} eq ${value}`);
-      return this
-    }
+		return this;
+	}
 
-    this.query.push(`${field} eq '${value}'`);
+	le(field: string, value: string | number): Query {
+		if (typeof value === "string" && !this.trimSpaces(value)) return this;
 
-    return this;
-  }
+		if (typeof value === "number") {
+			this.query.push(`${field} le ${value}`);
 
-  le(field: string, value: string | number): Query {
+			return this;
+		}
 
-    if (
-      typeof value === "string" &&
-      !this.trimSpaces(value)
-    ) return this
+		this.query.push(`${field} le '${value}'`);
 
+		return this;
+	}
 
-    if (typeof value === "number") {
+	ge(field: string, value: string | number): Query {
+		if (typeof value === "string" && !this.trimSpaces(value)) return this;
 
-      this.query.push(`${field} le ${value}`);
+		if (typeof value === "number") {
+			this.query.push(`${field} ge ${value}`);
 
-      return this
-    }
+			return this;
+		}
 
-    this.query.push(`${field} le '${value}'`);
+		this.query.push(`${field} ge '${value}'`);
 
-    return this;
-  }
+		return this;
+	}
 
-  ge(field: string, value: string | number): Query {
+	substringof(field: string, value: string): Query {
+		if (!value) return this;
 
-    if (
-      typeof value === "string" &&
-      !this.trimSpaces(value)
-    ) return this
+		this.query.push(`substringof('${value}', ${field})`);
 
-    if (typeof value === "number") {
+		return this;
+	}
 
-      this.query.push(`${field} ge ${value}`);
+	and(): Query {
+		if (!this.query.length) return this;
 
-      return this
-    }
+		this.query.push("and");
 
-    this.query.push(`${field} ge '${value}'`);
+		return this;
+	}
 
-    return this;
-  }
+	or(): Query {
+		if (!this.query.length) return this;
 
-  substringof(field: string, value: string): Query {
+		this.query.push("or");
 
-    if (!value) return this
+		return this;
+	}
 
-    this.query.push(`substringof('${value}', ${field})`);
+	build(): string {
+		const generatedQuery = this.query.join(" ");
 
-    return this;
-  }
+		return generatedQuery;
+	}
 
-  and(): Query {
-    if (!this.query.length) return this
+	//TODO add validation method on generate query
 
-    this.query.push("and")
-
-    return this
-  }
-
-  or(): Query {
-    if (!this.query.length) return this
-
-    this.query.push("or")
-
-    return this
-  }
-
-
-  build(): string {
-    const generatedQuery = this.query.join(" ")
-
-    return generatedQuery;
-  }
-
-
-
-  //TODO add validation method on generate query
-
-
-  private trimSpaces(value: string) {
-
-    return value.trim()
-  }
-
+	private trimSpaces(value: string) {
+		return value.trim();
+	}
 }
-
-

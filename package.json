@@ -1,17 +1,36 @@
 {
   "name": "@whyy/pnpjs-query",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "pnpjs query for JavaScript",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
     "dev": "tsx watch src/index.ts",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "format": "npx @biomejs/biome format --write ./src",
+    "lint": "npx @biomejs/biome lint --write ./src",
+    "check": "npx @biomejs/biome check ./src"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "pnpjs",
+    "query",
+    "pnp",
+    "OData",
+    "pnpjs-query",
+    "JavaScript"
+  ],
+  "author": {
+    "name": "Whyy",
+    "email": "icarovsilva1@gmail.com",
+    "url": "https://github.com/IcaroSilvaFK"
+  },
+  "license": "MIT",
   "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "@changesets/cli": "^2.27.7",
     "@vitest/coverage-v8": "^2.0.4",
     "tsx": "^4.16.2",
     "typescript": "^5.5.4",
