@@ -1,6 +1,6 @@
 {
   "name": "@icarowhyy/pnpjs-query",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "OData query for JavaScript",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
