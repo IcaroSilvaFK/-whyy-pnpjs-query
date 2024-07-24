@@ -76,6 +76,16 @@ const query = new Query().ge("age", 10).build();
 */
 ```
 
+<h5>Date example</h5>
+
+```js
+const query = new Query().ge("createdAt", new Date()).build();
+
+/* output
+createdAt ge '2022-01-01T00:00:00.000Z'
+*/
+```
+
 ### Install
 
 ```shell
