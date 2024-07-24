@@ -1,6 +1,7 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 
 import Query from '../../src'
+import { Utils } from '../../src/utils/utils'
 
 
 describe("#ge suite test case", () => {
@@ -42,6 +43,19 @@ describe("#ge suite test case", () => {
 
 
     expect(result).toBe(expected)
+  })
+
+  it("Should have called toIsoString to convert date to string", () => {
+    const mockValue = "2022-01-01T00:00:00.000Z"
+    vi.spyOn(Utils, "toIsoString").mockReturnValue(mockValue)
+
+
+    const expected = `createdAt ge '${mockValue}'`
+
+    const result = query.ge("createdAt", new Date()).build()
+
+    expect(result).toBe(expected)
+
   })
 
 })

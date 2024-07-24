@@ -1,95 +1,107 @@
+import { Utils } from "../utils/utils";
+
 export class Query {
-	private query: string[] = [];
+  private query: string[] = [];
 
-	contains(field: string, text: string): Query {
-		if (!this.trimSpaces(text)) return this;
+  contains(field: string, text: string): Query {
+    if (!Utils.trimSpaces(text)) return this;
 
-		this.query.push(`contains(${field}, '${text}')`);
+    this.query.push(`contains(${field}, '${text}')`);
 
-		return this;
-	}
+    return this;
+  }
 
-	startsWith(field: string, text: string): Query {
-		if (!this.trimSpaces(text)) return this;
-		this.query.push(`startsWith(${field}, '${text}')`);
+  startsWith(field: string, text: string): Query {
+    if (!Utils.trimSpaces(text)) return this;
+    this.query.push(`startsWith(${field}, '${text}')`);
 
-		return this;
-	}
+    return this;
+  }
 
-	eq(field: string, value: string | number): Query {
-		if (typeof value !== "number" && !this.trimSpaces(value)) return this;
+  eq(field: string, value: string | number | Date): Query {
 
-		if (typeof value === "number") {
-			this.query.push(`${field} eq ${value}`);
-			return this;
-		}
+    if (value instanceof Date) {
+      value = Utils.toIsoString(value);
+    }
 
-		this.query.push(`${field} eq '${value}'`);
+    if (typeof value !== "number" && !Utils.trimSpaces(value)) return this;
 
-		return this;
-	}
+    if (typeof value === "number") {
+      this.query.push(`${field} eq ${value}`);
+      return this;
+    }
 
-	le(field: string, value: string | number): Query {
-		if (typeof value === "string" && !this.trimSpaces(value)) return this;
+    this.query.push(`${field} eq '${value}'`);
 
-		if (typeof value === "number") {
-			this.query.push(`${field} le ${value}`);
+    return this;
+  }
 
-			return this;
-		}
+  le(field: string, value: string | number | Date): Query {
+    if (value instanceof Date) {
+      value = Utils.toIsoString(value);
+    }
 
-		this.query.push(`${field} le '${value}'`);
+    if (typeof value === "string" && !Utils.trimSpaces(value)) return this;
 
-		return this;
-	}
+    if (typeof value === "number") {
+      this.query.push(`${field} le ${value}`);
 
-	ge(field: string, value: string | number): Query {
-		if (typeof value === "string" && !this.trimSpaces(value)) return this;
+      return this;
+    }
 
-		if (typeof value === "number") {
-			this.query.push(`${field} ge ${value}`);
+    this.query.push(`${field} le '${value}'`);
 
-			return this;
-		}
+    return this;
+  }
 
-		this.query.push(`${field} ge '${value}'`);
+  ge(field: string, value: string | number | Date): Query {
 
-		return this;
-	}
+    if (value instanceof Date) {
+      value = Utils.toIsoString(value);
+    }
 
-	substringof(field: string, value: string): Query {
-		if (!value) return this;
+    if (typeof value === "string" && !Utils.trimSpaces(value)) return this;
 
-		this.query.push(`substringof('${value}', ${field})`);
+    if (typeof value === "number") {
+      this.query.push(`${field} ge ${value}`);
 
-		return this;
-	}
+      return this;
+    }
 
-	and(): Query {
-		if (!this.query.length) return this;
+    this.query.push(`${field} ge '${value}'`);
 
-		this.query.push("and");
+    return this;
+  }
 
-		return this;
-	}
+  substringof(field: string, value: string): Query {
+    if (!value) return this;
 
-	or(): Query {
-		if (!this.query.length) return this;
+    this.query.push(`substringof('${value}', ${field})`);
 
-		this.query.push("or");
+    return this;
+  }
 
-		return this;
-	}
+  and(): Query {
+    if (!this.query.length) return this;
 
-	build(): string {
-		const generatedQuery = this.query.join(" ");
+    this.query.push("and");
 
-		return generatedQuery;
-	}
+    return this;
+  }
 
-	//TODO add validation method on generate query
+  or(): Query {
+    if (!this.query.length) return this;
 
-	private trimSpaces(value: string) {
-		return value.trim();
-	}
+    this.query.push("or");
+
+    return this;
+  }
+
+  build(): string {
+    const generatedQuery = this.query.join(" ");
+
+    return generatedQuery;
+  }
+
+
 }
