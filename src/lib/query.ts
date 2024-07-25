@@ -100,8 +100,8 @@ export class Query {
   build(): string {
     const generatedQuery = this.query.join(" ");
 
+    this.query = []
     return generatedQuery;
   }
-
 
 }
