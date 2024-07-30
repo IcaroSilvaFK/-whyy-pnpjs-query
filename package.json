@@ -41,5 +41,9 @@
   "bugs": {
     "url": "https://github.com/IcaroSilvaFK/-whyy-pnpjs-query/issues"
   },
-  "homepage": "https://github.com/IcaroSilvaFK/-whyy-pnpjs-query#readme"
+  "homepage": "https://github.com/IcaroSilvaFK/-whyy-pnpjs-query#readme",
+  "dependencies": {
+    "winston": "^3.13.1",
+    "winston-transport-browserconsole": "^1.0.5"
+  }
 }
