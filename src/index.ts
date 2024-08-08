@@ -3,5 +3,4 @@ import { Query } from "./lib/query";
 
 
 
-
 export default Query;
