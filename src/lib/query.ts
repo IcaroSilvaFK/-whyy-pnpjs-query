@@ -125,12 +125,6 @@ export class Query {
     return this;
   }
 
-
-  // advancedQuery(fn: (query: Query) => Query): Query {
-  //   fn(this)
-  //   return this
-  // }
-
   build(): string {
     const generatedQuery = this.query.join(" ");
 
