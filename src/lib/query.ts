@@ -6,8 +6,8 @@ export class Query {
   private logger: winston.Logger
 
 
-  constructor(debug = false) {
-    this.logger = Utils.configureLogger(!debug)
+  constructor(isDebugMode = false) {
+    this.logger = Utils.configureLogger(!isDebugMode)
   }
 
   contains(field: string, text: string): Query {
